@@ -1,0 +1,7 @@
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Scratch space (never committed; real notes go in log/, quests/, org/)
+scratch/
