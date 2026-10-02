@@ -110,6 +110,23 @@ use.
 5. From then on: issue directives, ask questions. Everything is logged,
    filed, and committed.
 
+## What it's been run with (as of October 2026)
+
+The author's experience, not a rule: ClaudeOrg was built and run on Claude
+Opus, and for long autonomous runs, what worked best was:
+
+- **Opus 4.8 or earlier:** Max effort.
+- **Opus 5.5 or later:** High effort. Since Anthropic changed Opus 5.5's
+  effort settings, Max tended to churn in review loops on long runs, while
+  High stayed deep without looping.
+
+Setup's interview offers to record which model and effort your long runs
+need in your org's contract; left unset, the coordinator assumes the
+strongest model at maximum effort. Before any long run, the coordinator
+checks the session's model and effort against that requirement (or asks you
+to confirm them where it can't read them), and on a mismatch it flags it
+instead of launching.
+
 ## The shape, in one paragraph
 
 The COORDINATOR is your single point of contact and an expert at exactly
