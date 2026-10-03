@@ -121,11 +121,11 @@ Opus, and for long autonomous runs, what worked best was:
   High stayed deep without looping.
 
 Setup's interview offers to record which model and effort your long runs
-need in your org's contract; left unset, the coordinator assumes the
-strongest model at maximum effort. Before any long run, the coordinator
-checks the session's model and effort against that requirement (or asks you
-to confirm them where it can't read them), and on a mismatch it flags it
-instead of launching.
+need in your org's contract; left unset, the coordinator asks you before
+the first long run and records your answer there. Before any long run, the
+coordinator checks the session's model and effort against that requirement
+(or asks you to confirm them where it can't read them), and on a mismatch
+it flags it instead of launching.
 
 ## The shape, in one paragraph
 

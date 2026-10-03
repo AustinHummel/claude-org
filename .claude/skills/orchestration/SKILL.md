@@ -138,13 +138,18 @@ one context window; every tiered run):
   `get_usage` reports context and plan limits, not effort. Where nothing
   exposes them, the CEO's confirmation stands in for the reading.
 - CHECK them against the CEO's requirement in the contract's standing
-  facts; absent one, the strongest model at maximum effort. That
-  requirement is the **required effort** every skill and brief means when
-  it asks for effort. It can sit below the top setting: a vendor can remap
-  what each level means, and a level past what a model handles well can
-  churn instead of deepening. Choosing it is the CEO's quality call alone,
-  never a precedent for lowering effort to save time or allowance ("Pace,
-  never thin", below).
+  facts. That requirement is the **required effort** every skill and brief
+  means when it asks for effort. It can sit below the top setting: a vendor
+  can remap what each level means, and a level past what a model handles
+  well can churn instead of deepening. Choosing it is the CEO's quality
+  call alone, never a precedent for lowering effort to save time or
+  allowance ("Pace, never thin", below).
+- NONE RECORDED: before the first long run, ask the CEO which model and
+  effort long runs need, record the answer in the standing facts, and
+  check against it from then on. Never assume one (not even the top
+  setting, which can be the one that churns), and don't launch until it
+  is answered. Until then, a brief's request for the required effort
+  means the session's own setting.
 - On a mismatch either way, above the requirement or below it, DON'T
   LAUNCH: flag it. The setting is the CEO's to change, not yours.
 - Re-read at EVERY launch (a fresh session need not start on the settings

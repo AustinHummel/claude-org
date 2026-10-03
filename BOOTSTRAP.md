@@ -59,7 +59,8 @@ skip any the principal's opening directive already answered):
    remote unasked. Optionally, for long agent runs: a usage line where
    agents stop starting new work (a % of the plan's weekly allowance, or
    "no gate"), and the model and effort those runs need. Unanswered, the
-   orchestration skill asks before the first long run.
+   coordinator asks for each before the first long run and records the
+   answer (orchestration skill); it never assumes one.
 
 Every answer is a fact with provenance ("the CEO, at genesis") — file them
 as such. Do not invent facts to fill silence; unknowns become the open
