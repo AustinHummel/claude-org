@@ -27,7 +27,10 @@ safely build on.
    - **Math past basic arithmetic** (in any unit type): each such claim
      the deliverable rests on is PROOF-GRADE, a written proof plus a
      second mathematician's independent PROOF-VERIFIED
-     ([proof-grade-math.md](proof-grade-math.md)). Re-run the checker's
+     ([proof-grade-math.md](proof-grade-math.md)). Where the CEO has
+     scheduled proofs by consequence, a claim not yet due may instead be
+     recorded UNPROVEN with its kind and reason, which you check; nothing
+     may present it as settled. Re-run the checker's
      oracle yourself, as you would a suite, and read the proven statement
      against the claim the work relies on: a proof of a narrower statement
      (fewer inputs, an extra hypothesis) is the classic gap. A math verdict

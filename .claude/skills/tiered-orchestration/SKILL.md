@@ -360,7 +360,10 @@ reconcile and report.
    (experiential included) or records why not; the **decision ledger** is seeded;
    and a sample of
    experienced-surface units carry their DoD evidence clauses
-   ([references/evidence.md](references/evidence.md)). A poisoned foundation caught
+   ([references/evidence.md](references/evidence.md)); and, where proofs are
+   scheduled by consequence, every unit that relies on an owed existential or harm
+   claim sits behind that claim's proof ([references/front-end.md](references/front-end.md)).
+   A poisoned foundation caught
    here costs one bounce; caught at reconciliation it costs the run. Then spawn the
    build-arc L1.
 3. **Relay at the top.** At each `context-wall` wrap, spawn a fresh L1 pointed at
@@ -390,7 +393,10 @@ reconcile and report.
      the designers' recorded FLAGS, the literal-reading verdicts — is resolved; and
      every design a build unit consumed was **binding, not draft**
      ([references/design-passes.md](references/design-passes.md) — this is the
-     consumer-verified binding gate applied at the outermost tier).
+     consumer-verified binding gate applied at the outermost tier). Where proofs
+     were scheduled by consequence, no unit was built before the existential and
+     harm claims it relies on were PROOF-GRADE, and the claims still owed are
+     handed forward by kind.
    - **The evidence discipline held**: the acceptance-medium declaration exists and
      matches what was actually verified; every experienced-surface unit's checkbox
      references its evidence artifact — **spot-open a sample and read it yourself**;

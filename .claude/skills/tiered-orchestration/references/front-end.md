@@ -159,7 +159,12 @@ altitude — keep them separate.)
   seam everyone agreed on and nobody owns ships as a punt. Likewise each proven math
   claim's obligations (its hypotheses to enforce, its oracle and property tests to
   port — [proof-grade-math.md](../../orchestration/references/proof-grade-math.md))
-  land in the DoD of the unit that implements it.
+  land in the DoD of the unit that implements it. Where the CEO has scheduled the
+  proofs by consequence, each owed claim's proof (and its independent check) is a
+  unit of its own: an existential or harm proof is ordered ahead of every unit
+  that relies on the claim, existential ones first; a refinement proof is placed
+  at the event that makes it due; and each unit names the heavy claims it relies
+  on, with their kinds.
 - **Tier the synthesis itself when the input is large**, so no single agent — the
   coordinator and the top synthesizer least of all — ever holds every raw branch:
   each area's sub-coordinator synthesizes its own slice into a partial plan, and a
@@ -209,7 +214,13 @@ the synthesis a hub over spokes — so the plan it feeds is read from a clean li
   **binding** on builders (a builder
   executes the design and escalates a delta rather than silently diverging), and the
   build relay may consume **only a `binding` design** — a `draft` at the seam is a
-  gate failure, not a green light.
+  gate failure, not a green light. Under a proof schedule by consequence the seam
+  does not wait for every proof: the owed proofs cross it as plan units, no unit
+  runs before the existential and harm claims it relies on are PROOF-GRADE, and the
+  build stays on an internal line no real user relies on. Releasing it to real
+  users is an outward-facing act that waits until every existential and harm claim
+  the release relies on is PROOF-GRADE
+  ([proof-grade-math.md](../../orchestration/references/proof-grade-math.md)).
 - **The model.** Every front-end agent — each branch, sub-coordinator, and
   synthesizer — is a **fresh subagent at the planner's-caliber model, explicitly
   selected** (the "same model at every tier" invariant); the plan is only ever

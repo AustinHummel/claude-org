@@ -4,11 +4,14 @@ In math, close does not count. A claim that a design, a build, a decision,
 or a figure someone will rely on rests upon is either true for every case
 it covers or it is not, and a confidence percentage cannot say which. So
 any math past basic arithmetic is proven by one mathematician agent and
-checked by a second, independent one before anything rests on it, and it
-travels by its proof status, never by a confidence. Math that certifies
-safety (a limit is never crossed, a deadline is never missed) is where
-this matters most: there, a probably-right proof is a promise the work may
-break.
+checked by a second, independent one, and it travels by its proof status,
+never by a confidence. Until it is proven, nothing whose failure would
+break a promise or harm someone rests on it, and no one is told it holds;
+when the rest is due can depend on what its failure would cost
+([When each claim is due](#when-each-claim-is-due-by-consequence)). Math
+that certifies safety (a limit is never crossed, a deadline is never
+missed) is where this matters most: there, a probably-right proof is a
+promise the work may break.
 
 **The failure that set this bar.** A design's safety math was red-teamed
 by argument, judged sound at ~90% confidence, and bound. A later
@@ -130,22 +133,79 @@ A heavy claim has one of three statuses: **PROOF-GRADE** (a written proof
 and a fresh checker's PROOF-VERIFIED), **REFUTED**, or **UNPROVEN**
 (everything else, a written but unchecked proof included). Only
 PROOF-GRADE is settled. An UNPROVEN claim may be recorded as a conjecture,
-but nothing may rest on it (no design, build, decision, or figure or
-guarantee a person will rely on), and no report may present it as
-settled. When a claim resists proof, every remedy is a fix: prove it;
-replace it with a weaker claim that is proven (a certified conservative
-bound instead of an exact optimum, a finite horizon instead of "forever");
+and nothing rests on it beyond what its schedule allows (next section): no
+decision, figure, or guarantee a person will rely on; no build whose
+failure would break a promise or harm someone; and no report, screen, or
+message presents it as settled. When a claim resists proof, every remedy
+is a fix: prove it; replace it with a weaker claim that is proven (a
+certified conservative bound instead of an exact optimum, a finite horizon
+instead of "forever");
 or narrow the domain to where the proof holds and make the system enforce
 that domain. What is never available is proceeding on it with a
 confidence or a recorded rationale, the acceptance path other findings
 have.
 
 The bar holds whoever proposed the math, a specialist, the lead, or the
-CEO: authority settles what to build, never whether a formula is true. And
+CEO: authority settles what to build, and may choose when each proof is
+due (next section), never whether a formula is true. And
 the label is not the artifact: a math claim labelled "validated", "sound",
 or "verified" without the proof and the PROOF-VERIFIED check is UNPROVEN,
 whenever it was labelled, and new work that would rest on it first brings
 it up to this bar.
+
+## When each claim is due: by consequence
+
+Every heavy claim the finished work relies on is proven and checked to the
+bar above, and that never varies. The default is also the simplest
+schedule: every claim PROOF-GRADE before anything rests on it. For work
+that will go through further design iterations, that default proves math a
+later iteration may delete, and it keeps the CEO from using, and so
+steering, what is being designed. For such work the CEO may choose instead
+to schedule each claim by what its failure would cost. The choice is
+recorded where the work's agents read it (a run's charter, a unit's brief):
+
+| Kind | Its failure would… | Proven |
+|---|---|---|
+| **1 · Existential** | make a promise the work makes impossible to keep | first, before anything that depends on it is built |
+| **2 · Harm** | hurt someone relying on the work: a figure shows more than is really there; a limit is reported safe when it is not | before anything that depends on it is built, and every one before any real user relies on the work |
+| **3 · Refinement** | only leave the work more cautious, slower, or less polished (exactness, optimality, efficiency, presentation) | once the design it serves stops changing; retired instead if a later iteration removes it |
+
+- **Classify by the worst failure, and record it.** Each claim carries its
+  kind and a one-line reason beside its status, and the tier that consumes
+  the gate checks the reason. Unsure between two kinds, take the stricter.
+- **Kind 3 must earn its label.** "It can only make the work more
+  cautious" is itself a claim. Where showing that a failure falls only on
+  the safe side takes heavy math, split the claim: its safe-direction half
+  ("never less than required") is a kind-2 claim of its own, and only the
+  remainder ("never more than needed") is kind 3.
+- **Internal builds may run ahead of kind 3, never of kinds 1 and 2.** A
+  settled design may be built on an internal line no real user relies on
+  while its kind-3 claims are owed, so the CEO can use it and steer
+  the next iteration. Nothing, on any line, is built on an UNPROVEN kind-1
+  or kind-2 claim. A unit built ahead of a kind-3 proof records that claim
+  as UNPROVEN in its definition of done; once the claim is PROOF-GRADE, its
+  obligations ([What the build carries](#what-the-build-carries)) land in a
+  later unit.
+- **Release waits on kinds 1 and 2.** Before real users rely on a release,
+  every kind-1 and kind-2 claim it relies on is PROOF-GRADE, the claims in
+  inherited code included.
+- **Never advertised early.** An owed claim is never presented as proven,
+  in a report or in the work itself: copy that calls a figure "exact" or
+  "the best" states the claim, and waits on its proof.
+- **A refutation is fixed at once, whatever the kind**, before anything
+  further relies on the claim; a refuted kind-1 claim reopens the design.
+- **The owed list never closes silently.** It lives in a durable register;
+  each kind-3 claim names the event that makes it due (the design it
+  serves settling), so "still changing" cannot defer it forever; the
+  list travels in status reports by kind; and a run that ends with claims
+  still owed hands the list forward. A claim leaves it only as
+  PROOF-GRADE, or as retired: nothing relies on it any longer, recorded
+  with what replaced it.
+
+This is a schedule, never a discount. Every claim the work keeps is proven
+and independently checked exactly as above, and only the order moves: no
+kind earns a confidence, a lighter check, or a shortcut proof, and nothing
+is dropped that the work still relies on. It is not a scope cut.
 
 ## What the build carries
 
@@ -172,20 +232,27 @@ confidence percentage, and never as "validated", "sound", or "verified"
 short of PROOF-GRADE. An agent that receives a math verdict phrased as a
 confidence does not relay the number: it reports the claim as not yet
 proven and bounces the deliverable ([verification.md](verification.md)).
+Where proofs are scheduled by consequence, a report of the math also
+gives the owed claims by kind, so the CEO can see what still stands
+between the work and real users.
 
 ## Where it is enforced
 
 - **Every delegated unit**: the brief asks for a proof, not an estimate
   ([briefing.md](briefing.md)); the adequacy pass refuses a heavy claim
-  that is not PROOF-GRADE ([verification.md](verification.md)); the
+  that is not PROOF-GRADE when its schedule says it is due
+  ([verification.md](verification.md)); the
   report carries the status ([report.md](report.md)).
 - **A tiered run**: specialists deliver a proof or a counterexample, never
   a confidence (tiered-orchestration's
   [role-prompt.md](../../tiered-orchestration/references/role-prompt.md),
-  part 8); a design whose math lacks both artifacts cannot turn `binding`
+  part 8); a design whose math lacks both artifacts cannot turn `binding`,
+  or, under a schedule by consequence, lacks each claim's statement, kind,
+  and status, or has one REFUTED
   ([design-passes.md](../../tiered-orchestration/references/design-passes.md),
   "The binding gate"); plan synthesis carries each proven claim's
-  obligations into a unit's definition of done
+  obligations into a unit's definition of done, and orders each owed
+  kind-1 or kind-2 proof ahead of every unit that relies on it
   ([front-end.md](../../tiered-orchestration/references/front-end.md)).
 - **Question review**: an answer that turns on heavy math returns a proof
   or a counterexample, never a confidence, and gets its own check

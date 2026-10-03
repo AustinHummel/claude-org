@@ -36,7 +36,9 @@ demands it:
   specialization for design-heavy units — a decider agent before builders.
 - [references/proof-grade-math.md](references/proof-grade-math.md): any
   unit whose deliverable rests on math past basic arithmetic — proven,
-  independently checked, and reported by status before anything rests on it.
+  independently checked, and reported by status before anything rests on
+  it, or, where the CEO chooses, on a schedule set by what its failure
+  would cost.
 
 ## Why delegate: context scope is a tool
 

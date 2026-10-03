@@ -311,6 +311,18 @@ integrate; a failed trace bounces the pass). Concretely:
   rationale; the consumer refuses `binding` without both artifacts exactly as it
   refuses a missing lens artifact.
 
+  **When the CEO has scheduled the run's proofs by consequence** (recorded in its
+  charter; proof-grade-math.md, "When each claim is due"), the gate moves from the
+  design to the build, never off the math. To turn `binding`, each such claim must
+  be in the corpus with its exact statement, its status, and its kind (existential,
+  harm, or refinement) with a one-line reason the consumer checks; a REFUTED claim
+  is still a finding only a fix resolves. An UNPROVEN claim no longer blocks
+  `binding`; it blocks every build unit that relies on it if it is existential or
+  harm (plan synthesis orders its proof first —
+  [front-end.md](front-end.md)), and a refinement claim is proven once the design
+  it serves stops changing. A claim refuted after `binding` returns every section
+  that relies on it to `draft`.
+
 This is what turns the two lenses from "a thorough lead's habit" into a wall the run
 cannot pass — the same move that made a drifting verification discipline stick once
 it was an unmissable, consumer-checked gate rather than a good intention. (It also

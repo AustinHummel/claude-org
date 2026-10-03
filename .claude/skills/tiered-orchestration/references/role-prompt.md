@@ -97,6 +97,8 @@ so they frame how it is read).
    until the conducting tier has a second mathematician check it, briefed
    blind-first, and the check returns PROOF-VERIFIED
    ([proof-grade-math.md](../../orchestration/references/proof-grade-math.md)).
+   Where the run schedules proofs by consequence, also name each claim's kind
+   (existential, harm, or refinement) and why, for the conducting tier to confirm.
 9. **Final-call reservation** — *"The final decision rests with the **conducting
    tier that stood you up**, who compares your independent answer to its own. Never
    bounce a fork to the CEO — flag it upward."*
