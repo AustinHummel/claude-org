@@ -65,6 +65,11 @@ is the price you knowingly pay for the throughput it buys.
 - So **every agent watches its own context** and, once past its threshold, stops
   at a CLEAN boundary (a committed unit, a returned child), finalizes its handoff,
   and reports up. Nobody pushes into the degraded zone to "just finish."
+- **Watching means measuring, never estimating.** Self-estimates under-read badly.
+  Every brief states the wrap point in tokens. The agent reads its used context
+  from the platform's running counter. The parent checks the platform's count of
+  the child at receipt. The method is in
+  [references/context-meter.md](references/context-meter.md).
 - **Thresholds are proportional and role-dependent.** Workers and orchestrators
   wrap **past ~50%**. The coordinator, holding only thin summaries, may run to
   **~60%**. And **deep-design and decision specialists wrap far earlier — past
@@ -244,6 +249,9 @@ Ledger schema — one line per agent per wrap:
 The `model` field records the model each generation actually ran on — the one
 thing the spawner explicitly set (effort inherits from the session and cannot be
 recorded per-spawn).
+The `wrap` field is a measurement, never an estimate: the parent's reading of the
+platform's count of the child where it has one, else the agent's own counter
+reading ([references/context-meter.md](references/context-meter.md)).
 
 Worked example (one run, three wraps up the tiers):
 
@@ -473,9 +481,10 @@ re-enters the same path. Two nets for the same fish.
 
 Every brief points at this skill and at
 [orchestration](../orchestration/SKILL.md), names the plan, handoff, field-notes,
-and ledger paths, and sets the wrap threshold and the budget gate's current
-threshold (orchestrators check it before every spawn, workers before each next
-unit). Beyond that:
+and ledger paths, and sets the wrap threshold **in tokens**, with the method for
+measuring it ([references/context-meter.md](references/context-meter.md)), and
+the budget gate's current threshold (orchestrators check it before every spawn,
+workers before each next unit). Beyond that:
 
 - **An orchestrator brief (layers 1 and 2)** says, in the strongest terms: you
   **orchestrate, you do NOT do the work**. Spawn one child **in the foreground**
@@ -639,6 +648,9 @@ Descend to a spoke when the step in front of you needs its depth:
   action fence → stance → grounding → understanding → deliverable → final-call
   reservation), single-sourced here for every design lens, decision reasoner,
   skeptic, and auditor the run stands up.
+- **[references/context-meter.md](references/context-meter.md)** — how an agent
+  measures its own context against the wrap point (never by estimate), what
+  each brief states, and what the parent checks when a child returns.
 - **[references/mid-run-forks.md](references/mid-run-forks.md)** — resolving a fork
   the plan never settled without stalling: in-flight decisions (the derivability
   test, the decision ledger, the two channels that may interrupt the CEO), the
