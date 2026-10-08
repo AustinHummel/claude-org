@@ -44,7 +44,10 @@ Every brief carries these sections. Order matters less than completeness.
 6. GUARDRAILS: no commits unless told (the coordinator integrates); write
    only within the named area; read the companion skills by path
    (doc-hygiene, workspace-stewardship; the daily-log skill only if the
-   unit appends to the log, which is normally the coordinator's job).
+   unit appends to the log, which is normally the coordinator's job). A
+   unit that may run long or parallel compute gets a pointer to
+   [local-compute.md](local-compute.md): low priority, and every process
+   it starts is ended or handed off before it returns.
 7. REPORT CONTRACT: point at the orchestration skill's `report.md`, plus
    exactly what evidence you expect: sources with dates, the artifact
    path, suite output tail, before/after behavior.

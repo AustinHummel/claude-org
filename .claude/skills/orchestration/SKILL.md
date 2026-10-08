@@ -14,8 +14,10 @@ description: >-
   checked, never a confidence), logging every dispatch so the CEO can
   later ask what any agent did, the delegation
   disclosure that keeps deep verification from being duplicated at each
-  level of an agent hierarchy, and recognizing when a recurring brief
-  should crystallize into a permanent role (a skill or a seat).
+  level of an agent hierarchy, running long or parallel local compute at
+  low priority with every background process owned until it ends, and
+  recognizing when a recurring brief should crystallize into a permanent
+  role (a skill or a seat).
 ---
 
 # Orchestration: delivering work through delegated context
@@ -39,6 +41,9 @@ demands it:
   independently checked, and reported by status before anything rests on
   it, or, where the CEO chooses, on a schedule set by what its failure
   would cost.
+- [references/local-compute.md](references/local-compute.md): any unit
+  that starts a long-running or parallel process on the CEO's machine — low
+  priority, a recorded owner, and the sweep for strays.
 
 ## Why delegate: context scope is a tool
 
@@ -190,6 +195,16 @@ spawn:
 - REPORT each park: the coordinator tells the CEO, as status rather than a
   question, the reading, the reset time, and whether paid overage moved.
   That is the evidence the threshold gets tuned by.
+
+## Processes you start: run low, own them
+
+Long-running or parallel compute (oracles, harnesses, sweeps) runs on the
+CEO's own machine, and a background process outlives the agent that started
+it. So any such job starts at below-normal priority with cores left free,
+gets a recorded owner, and before its owner returns or wraps it is finished,
+killed, or handed off in the report. Orchestrators and the coordinator sweep
+for strays at their wrap, a run park, and session close. Commands and the
+sweep script: [references/local-compute.md](references/local-compute.md).
 
 ## Logging the delegation
 

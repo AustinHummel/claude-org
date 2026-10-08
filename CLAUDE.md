@@ -74,7 +74,10 @@ CLOSE — every session that changed anything:
 2. Update "Where things stand" in each quest the session advanced (quests
    skill).
 3. Finish today's log: To-Do statuses current, notes complete.
-4. Commit: `git add -A`, message `YYYY-MM-DD: <one-line summary>`. Never
+4. If this session's agents started any background process, sweep for
+   strays: each one is finished, killed, or owned by a To-Do
+   (orchestration skill, local-compute).
+5. Commit: `git add -A`, message `YYYY-MM-DD: <one-line summary>`. Never
    ADD a remote unless the «role term» asks. While the org is local-only,
    never push; once a remote exists, end every close with a push, so no
    single machine or ephemeral cloud session ever holds the only copy.

@@ -32,6 +32,9 @@ parent in the daily log — the report is the source for those children.
       folded upward. Write "none" when you worked alone. This section is
       what lets each level of a hierarchy trust the level below instead of
       re-checking it.
+    STILL RUNNING: every process you started that is still running,
+      one job line each (local-compute.md), handed to the reader of this
+      report. Write "none" when nothing is.
     ESCALATIONS: obstacles outside your scope fence, with just enough
       context for the parent to decide: what you hit, why it blocks or
       degrades the work, your recommendation, and whether you proceeded or

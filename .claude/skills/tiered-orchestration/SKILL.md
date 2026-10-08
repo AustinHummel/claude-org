@@ -203,7 +203,9 @@ fresh agent pick up exactly where the last one stopped:
   change ([references/mid-run-forks.md](references/mid-run-forks.md)). A reader
   sees at a glance what is done, what is next, and what is out of bounds.
 - **The handoff** — the **latest state only**, overwritten every wrap: what the
-  last worker finished, where it stopped, and **what the next worker does first**.
+  last worker finished, where it stopped, **what the next worker does first**, and
+  the job line of any process still running
+  ([local-compute](../orchestration/references/local-compute.md)).
   It answers one question — "where do I start right now?" — and nothing else lives
   here, because everything here is disposable the moment the next worker wraps.
 - **The field notes** — the **durable** knowledge the handoff must not carry:
@@ -332,7 +334,9 @@ reconcile and report.
    `env-blocked` and not decision traffic: don't spawn; put it to the CEO. Every
    spawn at every tier also passes the **budget gate** (orchestration, "Before
    every spawn"); once it closes, the relay parks (the `budget-park` wrap-reason)
-   and you relaunch it from the handoff after the allowance resets.
+   and you relaunch it from the handoff after the allowance resets. At every park,
+   and at session close, sweep for stray processes
+   ([local-compute](../orchestration/references/local-compute.md)).
 1. **Delegate the whole run to ONE layer-1 orchestrator — front-end included.** Do
    not run the front-end from your own seat. Brief and spawn one L1 pointed at the
    raw INPUT (in whatever form it arrived), this skill, and the CEO's scope intent
@@ -484,7 +488,11 @@ Every brief points at this skill and at
 and ledger paths, and sets the wrap threshold **in tokens**, with the method for
 measuring it ([references/context-meter.md](references/context-meter.md)), and
 the budget gate's current threshold (orchestrators check it before every spawn,
-workers before each next unit). Beyond that:
+workers before each next unit), and the local-compute rule
+([orchestration](../orchestration/references/local-compute.md)): long or parallel
+jobs run at low priority, every process an agent starts is finished, killed, or
+handed off by job line before it returns, and an orchestrator sweeps for strays
+once its last child has returned, before it wraps. Beyond that:
 
 - **An orchestrator brief (layers 1 and 2)** says, in the strongest terms: you
   **orchestrate, you do NOT do the work**. Spawn one child **in the foreground**
