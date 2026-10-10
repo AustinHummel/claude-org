@@ -25,13 +25,15 @@ safely build on.
      edit to an existing test is either called for by the brief or a red
      flag, never skimmed past.
    - **Math past basic arithmetic** (in any unit type): each such claim
-     the deliverable rests on is PROOF-GRADE, a written proof plus a
-     second mathematician's independent PROOF-VERIFIED
-     ([proof-grade-math.md](proof-grade-math.md)). Where the CEO has
+     the deliverable rests on is PROOF-GRADE: a written proof plus a
+     second mathematician's independent PROOF-VERIFIED, or a
+     machine-checked proof plus a blind statement-fidelity review returning
+     FAITHFUL ([proof-grade-math.md](proof-grade-math.md)). Where the CEO has
      scheduled proofs by consequence, a claim not yet due may instead be
      recorded UNPROVEN with its kind and reason, which you check; nothing
-     may present it as settled. Re-run the checker's
-     oracle yourself, as you would a suite, and read the proven statement
+     may present it as settled. Re-run the check yourself, as you would a
+     suite: the checker's oracle, or on the machine-checked route the
+     build and the axiom report. Read the proven statement
      against the claim the work relies on: a proof of a narrower statement
      (fewer inputs, an extra hypothesis) is the classic gap. A math verdict
      phrased as a confidence percentage is not a verdict; bounce it.
@@ -65,8 +67,9 @@ of its report maps what sits beyond it. Spin up a separate checker when:
   anyone.
 
 Math past basic arithmetic is the one case that is not a judgment call: its
-independent checker, a second mathematician, is always owed, and you stand
-it up yourself rather than letting the maker brief it
+independent checker is always owed, and you stand it up yourself rather
+than letting the maker brief it. That is a second mathematician, or, for a
+machine-checked proof, the blind statement-fidelity reviewer
 ([proof-grade-math.md](proof-grade-math.md)).
 
 Keep the checker independent and adversarial: give it the affected

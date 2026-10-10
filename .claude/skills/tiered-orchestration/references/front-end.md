@@ -164,7 +164,9 @@ altitude — keep them separate.)
   unit of its own: an existential or harm proof is ordered ahead of every unit
   that relies on the claim, existential ones first; a refinement proof is placed
   at the event that makes it due; and each unit names the heavy claims it relies
-  on, with their kinds.
+  on, with their kinds. A formal library that machine-checked proofs share (the
+  formalized model and its groundwork) is a unit of its own, ordered ahead of the
+  proofs that need it.
 - **Tier the synthesis itself when the input is large**, so no single agent — the
   coordinator and the top synthesizer least of all — ever holds every raw branch:
   each area's sub-coordinator synthesizes its own slice into a partial plan, and a

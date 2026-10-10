@@ -4,8 +4,10 @@ In math, close does not count. A claim that a design, a build, a decision,
 or a figure someone will rely on rests upon is either true for every case
 it covers or it is not, and a confidence percentage cannot say which. So
 any math past basic arithmetic is proven by one mathematician agent and
-checked by a second, independent one, and it travels by its proof status,
-never by a confidence. Until it is proven, nothing whose failure would
+checked independently, by a second mathematician or by a proof assistant
+with a blind review of what its theorem states
+([two routes](#independently-checked-two-routes)), and it travels by its
+proof status, never by a confidence. Until it is proven, nothing whose failure would
 break a promise or harm someone rests on it, and no one is told it holds;
 when the rest is due can depend on what its failure would cost
 ([When each claim is due](#when-each-claim-is-due-by-consequence)). Math
@@ -90,7 +92,20 @@ number theorist), delivers for each heavy claim:
 A proof too large for one agent's window splits into lemmas, each proven
 and checked on its own; the assembly is checked too.
 
-## Independently checked
+The proof may instead be written in a proof assistant (Lean, Rocq,
+Isabelle) and machine-checked. Items 1, 3 and 4 hold unchanged; the formal
+proof is item 2, with the kernel justifying every step, and its premises
+about the real system become formal definitions and named hypotheses, which
+the fidelity review grounds in their sources
+([By a proof assistant](#by-a-proof-assistant)).
+
+## Independently checked: two routes
+
+Either of two routes checks a proof independently. Both reach the same
+status, neither is the lighter check, and each claim records which one it
+took ([Choosing a route](#choosing-a-route)).
+
+### By a second mathematician
 
 A second mathematician agent checks it: stood up by the dispatcher, never
 by the prover (whose brief would carry its framing); fresh; at the
@@ -127,13 +142,113 @@ repair; the repaired proof goes to a fresh checker, blind to earlier
 verdicts, and is re-checked in full, until one returns PROOF-VERIFIED. A
 design red-team finding the math "sound" is not this check.
 
+### By a proof assistant
+
+A proof the assistant's kernel has checked needs no second mathematician.
+The kernel re-verifies every step mechanically: it cannot skip a step or
+be led by the prover's framing, which is a stronger check of the reasoning
+than any reader gives. What it cannot check is whether the formal theorem,
+and the formal definitions beneath it, say what the claim means. A theorem
+about the wrong definition checks just as cleanly. So this route has two
+parts, and the claim needs both.
+
+1. **Machine-checked.** The proof builds clean, at pinned versions of the
+   assistant and its libraries. For each theorem the claim rests on, the
+   assistant's own axiom report lists only its standard foundational
+   axioms. In Lean 4, `#print axioms` shows at most `propext`,
+   `Classical.choice` and `Quot.sound`. That rules out an unfinished-proof
+   placeholder (`sorry`, `admit`), an added `axiom`, and a step that trusts
+   compiled code instead of the kernel (Lean's `native_decide`, reported as
+   `Lean.ofReduceBool`). A grep of the source corroborates the report and
+   never replaces it. A gap the formalizer cannot close is stated as a
+   named hypothesis (below), never left as a placeholder.
+2. **Statement fidelity, reviewed blind.** A fresh agent checks it: stood
+   up by the dispatcher, never by the formalizer; at the strongest model,
+   explicitly selected, with the required effort requested; role-injected
+   in the claim's discipline and fluent in the assistant; blind to the
+   formalizer's confidence and to its account of why the statement fits.
+   It works in the checker's order:
+   1. **Predict before reading.** From the claim as the work states it, the
+      model's definitions, and the primary sources alone, it records what a
+      faithful statement must say (domain, hypotheses, conclusion) and how
+      a formal one could quietly differ. Typical ways: a narrower domain or
+      type (naturals where values go negative); an extra hypothesis, or one
+      no admitted input satisfies, so the theorem is vacuous; a total
+      function whose default value at an edge case reaches the conclusion;
+      a coercion or rounding that shifts the meaning; an off-by-one range.
+   2. **Compare.** Then it checks the formal statement, and every
+      definition it rests on, transitively, against that record and the
+      sources. It confirms each hypothesis is satisfiable by inputs the
+      system admits, ideally by an instance built in the assistant.
+   3. **Compute, where the definitions can be evaluated.** It runs them on
+      the boundary and adversarial classes by name plus broad random
+      samples, coverage stated, and compares them with an independent
+      oracle of the model written from the spec. An existing oracle serves
+      if it shares no code with the formalization. Any disagreement is a
+      finding.
+
+   Its verdict is FAITHFUL (the statement, its definitions and its
+   hypotheses say what the claim says, within the stated coverage) or
+   DIVERGES (each divergence listed), with no percentage. DIVERGES returns
+   to the formalizer; the repair is rebuilt and goes to a fresh reviewer,
+   blind to earlier verdicts, until one returns FAITHFUL.
+
+**Hypotheses are judged as on paper** ([Proven](#proven), item 4); the
+assistant only makes them impossible to hide. Each is one of three things:
+an obligation with a named owner who makes it true (an input limit the
+build enforces); a premise about the real system, grounded in its primary
+source; or a heavy claim of its own. A heavy hypothesis is owed. It gets
+its own entry and status and may be discharged on either route. Until it
+is PROOF-GRADE, the formal theorem proves only "if the hypothesis holds,
+so does the claim", and the claim the work relies on is UNPROVEN. When it
+is discharged on the written route, the fidelity review confirms that the
+hypothesis as formalized is the statement that was proven.
+
+**Shared definitions are a library.** The formalized model and its
+groundwork (calendar, money, rounding) are built once and reused. They are
+filed with the work at pinned versions; heavy build outputs stay out of
+version control, rebuildable from the source. A definition reviewed
+FAITHFUL at a pinned version is not re-reviewed for each claim that uses it
+unchanged; a changed definition is re-reviewed, with every claim resting on
+it. Builds are long local compute, run low and owned
+([local-compute.md](local-compute.md)).
+
+**What this route replaces, and what it never does.** It replaces the
+second mathematician, and the computations whose only job was checking the
+claim on the model (a checker's oracle run against the prover's figures).
+A cheap counterexample search before formalizing becomes optional: a false
+claim also fails to formalize, only later and at greater cost. It never
+replaces the tests that compare the real implementation with the model
+([What the build carries](#what-the-build-carries)): the kernel proves the
+model, not the code.
+
+A formal proof that fails to build leaves the claim UNPROVEN, not REFUTED.
+A formal proof of the negation of a faithful statement refutes it, as any
+reproducible counterexample does.
+
+### Choosing a route
+
+Either route meets the bar. The machine-checked one checks the reasoning
+more strongly and leaves a library later claims reuse; it costs
+formalization effort up front, much of it groundwork the assistant's
+libraries lack. Where the CEO sets a default route for a body of work,
+the choice is recorded where its agents read it (a run's charter, a unit's
+brief), as a proof schedule is. Each claim records the route it took
+and what it cost, so the choice can be revisited with data. Half of each
+route is not a route: a written proof with only a fidelity review is
+UNPROVEN, and so is a formal proof with a placeholder in it, whoever has
+read the placeholder's argument. The gap is stated as a hypothesis instead
+and discharged on either route, as above.
+
 ## Nothing rests on an unproven claim
 
 A heavy claim has one of three statuses: **PROOF-GRADE** (a written proof
-and a fresh checker's PROOF-VERIFIED), **REFUTED**, or **UNPROVEN**
-(everything else, a written but unchecked proof included). Only
-PROOF-GRADE is settled. An UNPROVEN claim may be recorded as a conjecture,
-and nothing rests on it beyond what its schedule allows (next section): no
+and a fresh checker's PROOF-VERIFIED, or a machine-checked proof and a
+fresh fidelity reviewer's FAITHFUL), **REFUTED**, or **UNPROVEN**
+(everything else: a written but unchecked proof, a formal proof awaiting
+its fidelity review, and a claim proven only from an owed hypothesis
+included). Only PROOF-GRADE is settled. An UNPROVEN claim may be recorded
+as a conjecture, and nothing rests on it beyond what its schedule allows (next section): no
 decision, figure, or guarantee a person will rely on; no build whose
 failure would break a promise or harm someone; and no report, screen, or
 message presents it as settled. When a claim resists proof, every remedy
@@ -147,9 +262,10 @@ have.
 
 The bar holds whoever proposed the math, a specialist, the lead, or the
 CEO: authority settles what to build, and may choose when each proof is
-due (next section), never whether a formula is true. And
+due (next section) and which route checks it, never whether a formula is
+true. And
 the label is not the artifact: a math claim labelled "validated", "sound",
-or "verified" without the proof and the PROOF-VERIFIED check is UNPROVEN,
+or "verified" without both artifacts of one route is UNPROVEN,
 whenever it was labelled, and new work that would rest on it first brings
 it up to this bar.
 
@@ -215,13 +331,19 @@ build:
 - each hypothesis becomes a named obligation in the implementing unit's
   definition of done (the input limit to enforce, the rounding direction,
   the exact arithmetic);
-- the check's oracle and the claim's property tests are ported into the
-  product's own test suite and named in that definition of done, so every
-  later change re-checks the claim;
+- an independent oracle of the model and the claim's property tests are
+  ported into the product's own test suite and named in that definition of
+  done, so every later change re-checks the claim. The oracle is the
+  checker's, or on the machine-checked route the fidelity review's; where
+  neither built one, the unit builds it from the spec. Either way the
+  implementation is tested against the model: a machine-checked proof never
+  stands in for these tests;
 - the proof, the check, and every script behind them are filed with the
   work's durable artifacts (the design record, a run's evidence area, the
-  repository), never only in a scratchpad or temp directory. A check
-  nobody can re-run has become testimony.
+  repository), never only in a scratchpad or temp directory. For a formal
+  proof that means its source, the pinned assistant and library versions,
+  the build log and the axiom report. A check nobody can re-run has become
+  testimony.
 
 ## Reporting math
 
@@ -229,7 +351,10 @@ Up the chain and to the CEO, a heavy claim travels by its status:
 PROOF-GRADE ("proven and independently checked"), REFUTED, or UNPROVEN
 ("not yet proven", with what is missing). It never travels as a
 confidence percentage, and never as "validated", "sound", or "verified"
-short of PROOF-GRADE. An agent that receives a math verdict phrased as a
+short of PROOF-GRADE. A formal proof that builds but awaits its fidelity
+review, or rests on an owed hypothesis, is still "not yet proven"
+("machine-checked, statement review pending"; "proven if H holds, H owed").
+An agent that receives a math verdict phrased as a
 confidence does not relay the number: it reports the claim as not yet
 proven and bounces the deliverable ([verification.md](verification.md)).
 Where proofs are scheduled by consequence, a report of the math also
@@ -246,7 +371,8 @@ between the work and real users.
 - **A tiered run**: specialists deliver a proof or a counterexample, never
   a confidence (tiered-orchestration's
   [role-prompt.md](../../tiered-orchestration/references/role-prompt.md),
-  part 8); a design whose math lacks both artifacts cannot turn `binding`,
+  part 8); a design whose math lacks both artifacts of a route cannot turn
+  `binding`,
   or, under a schedule by consequence, lacks each claim's statement, kind,
   and status, or has one REFUTED
   ([design-passes.md](../../tiered-orchestration/references/design-passes.md),

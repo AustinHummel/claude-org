@@ -38,8 +38,9 @@ Every brief carries these sections. Order matters less than completeness.
 5. DEFINITION OF DONE: observable outcomes, not activities — the artifact
    at its path, the questions answered with sources, the suite green. For
    research: what claims must be sourced and how fresh the sources must be.
-   For math past basic arithmetic: a written proof, never an estimate or a
-   confidence; its independent check is a separate unit
+   For math past basic arithmetic: a written proof, or a machine-checked
+   one where the work uses that route, never an estimate or a confidence;
+   its independent check is a separate unit
    ([proof-grade-math.md](proof-grade-math.md)).
 6. GUARDRAILS: no commits unless told (the coordinator integrates); write
    only within the named area; read the companion skills by path

@@ -155,7 +155,9 @@ asked to return.
     counter-argument · a concrete revisit trigger.
   - *Either, when the answer turns on math past basic arithmetic:* that
     math comes back as a proof or a counterexample, never a confidence,
-    and stays UNPROVEN until its own independent mathematician checks it
+    and stays UNPROVEN until it is independently checked: by its own
+    second mathematician, or, for a machine-checked proof, by a blind
+    statement-fidelity review
     ([proof-grade-math.md](../orchestration/references/proof-grade-math.md)).
 - **Use the strongest model at full effort**, as this is decision-shaping work
   (orchestration governors).

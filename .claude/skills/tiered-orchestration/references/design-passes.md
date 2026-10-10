@@ -300,16 +300,18 @@ integrate; a failed trace bounces the pass). Concretely:
   shortcut claimed to match the full computation), including math carried by a
   settled decision or the CEO's own proposal (a decision settles what to build,
   never whether its math is true), needs two more recorded artifacts in the corpus
-  before the design may turn `binding`: a mathematician's written proof and a
-  second mathematician's independent check returning PROOF-VERIFIED, which make
-  the claim PROOF-GRADE, per orchestration's
-  [proof-grade-math.md](../../orchestration/references/proof-grade-math.md). The
+  before the design may turn `binding`, which make the claim PROOF-GRADE per
+  orchestration's
+  [proof-grade-math.md](../../orchestration/references/proof-grade-math.md):
+  a mathematician's written proof and a second mathematician's independent check
+  returning PROOF-VERIFIED, or a machine-checked proof and a blind
+  statement-fidelity review returning FAITHFUL. The
   skeptic's argument is not that check: a red-team can find a proof sound while
   it stands on a false premise. A claim that is UNPROVEN or REFUTED is a finding
   only a **fix** resolves (prove it, weaken the claim to one that is proven, or
   narrow the domain and make the product enforce it), never accepted with a
-  rationale; the consumer refuses `binding` without both artifacts exactly as it
-  refuses a missing lens artifact.
+  rationale; the consumer refuses `binding` without both of a route's artifacts
+  exactly as it refuses a missing lens artifact.
 
   **When the CEO has scheduled the run's proofs by consequence** (recorded in its
   charter; proof-grade-math.md, "When each claim is due"), the gate moves from the

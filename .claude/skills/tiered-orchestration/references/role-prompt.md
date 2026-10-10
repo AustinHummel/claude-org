@@ -91,11 +91,13 @@ so they frame how it is read).
    ([design-passes.md](design-passes.md), "The composed artifact").
 
    **Math is the exception to *your confidence*.** Any claim past basic arithmetic
-   that the deliverable rests on comes back as a written proof, a reproducible
+   that the deliverable rests on comes back as a written proof (or a
+   machine-checked one, where the run uses that route), a reproducible
    counterexample, or a plain account of what is missing, never a percentage;
    confidence covers only the judgment around the math. The claim stays UNPROVEN
-   until the conducting tier has a second mathematician check it, briefed
-   blind-first, and the check returns PROOF-VERIFIED
+   until the conducting tier has it checked, briefed blind-first: by a second
+   mathematician returning PROOF-VERIFIED, or, for a machine-checked proof, by a
+   statement-fidelity reviewer returning FAITHFUL
    ([proof-grade-math.md](../../orchestration/references/proof-grade-math.md)).
    Where the run schedules proofs by consequence, also name each claim's kind
    (existential, harm, or refinement) and why, for the conducting tier to confirm.
