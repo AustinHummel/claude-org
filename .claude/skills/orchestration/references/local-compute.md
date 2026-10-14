@@ -54,8 +54,10 @@ Launch methods verified on Windows 11 (Python 3.13, nothing installed):
           else:
               os.nice(10)
 
-  Keep the two type declarations: without them the call fails silently on
-  64-bit Windows and the job runs at normal priority.
+  Copy it whole. The usual one-liner,
+  `ctypes.windll.kernel32.SetPriorityClass(ctypes.windll.kernel32.GetCurrentProcess(), 0x4000)`,
+  lacks the two type declarations: on 64-bit Windows it returns 0 and
+  changes nothing, and a `try/except: pass` around it hides that.
 - **From Git Bash or any POSIX shell:**
   `nice -n 10 python /abs/path/job.py ... > /abs/path/job.log 2>&1 &`
   (Git Bash maps it to BelowNormal).
@@ -70,9 +72,15 @@ Launch methods verified on Windows 11 (Python 3.13, nothing installed):
   without launching anything when tested.
 - Lowering a job already running: set every one of its processes, workers
   included: `Get-Process -Id <pid>,<pid>,... | ForEach-Object { $_.PriorityClass = 'BelowNormal' }`.
+- **Check that it took**, right after launch: the sweep script's `Prio`
+  column (section 3), or `(Get-Process -Id <pid>).PriorityClass`, reads
+  BelowNormal or Idle for the root and its workers. If not, lower them by
+  PID (above) and fix the launch.
 
 Launch with **absolute paths** to the script and its outputs: the sweep
-(section 3) finds jobs by the paths in their command lines.
+(section 3) finds jobs by the paths in their command lines, and a job
+started by a relative path (`python job.py` from its own folder) is
+invisible to it.
 
 ## 2. Record it
 
